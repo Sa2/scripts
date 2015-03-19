@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# あらかじめ以下のRPMモジュールをインストールしておくこと
+# protobuf
+# qt
+# qt-x11
+
 echo "create directory /tmp/mozc-install"
 mkdir /tmp/mozc-install
 cd /tmp/mozc-install
