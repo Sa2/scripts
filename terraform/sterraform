@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+unsafeCall () {
+  echo "You call unsafe command: $1"
+  echo "Terminated."
+  exit 1
+}
+
+safe () {
+  command="terraform $@"
+  eval $command
+}
+
+
+judge () {
+
+  if [ -z $1 ]; then
+    safe
+  elif [ $1 == "apply" ]; then
+    unsafeCall $1
+  elif [ $1 == "destroy" ]; then
+    unsafeCall $1
+  else
+    safe $@
+  fi
+
+}
+
+subCommand=$1
+
+judge $subCommand
